@@ -9,8 +9,8 @@ public class DeckCountTest extends TestCase {
 
 	public void testDectCount() {
 		(Deck) cards = new ArrayList<Card>();
-		
-		assertEquals(52, cards.getSize());
+		cards.createFullDeck();
+		assertEquals(52, cards.size());
 	}
 }
 
@@ -32,7 +32,6 @@ getCard();
 getSuit();
 getRank();
 
-need Hashcode:
 
 
 */
