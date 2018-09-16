@@ -30,4 +30,8 @@ public class Deck
 			}
 		}
 	}
+	public int getSize()
+	{
+		return this.cards.size();
+	}
 }

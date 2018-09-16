@@ -9,9 +9,9 @@ public class DeckCountTest extends TestCase {
 	
 
 	public void testDectCount() {
-		Deck cards = new ArrayList<Card>();
+		Deck cards = new Deck();
 		cards.createFullDeck();
-		assertEquals(52, cards.size());
+		assertEquals(52, cards.getSize());
 	}
 }
 
