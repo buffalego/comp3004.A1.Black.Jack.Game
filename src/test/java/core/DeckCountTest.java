@@ -8,11 +8,14 @@ public class DeckCountTest extends TestCase {
 	
 
 	public void testDectCount() {
-		DeckCount checkDeck = new DeckCount();
+		(Deck) cards = new ArrayList<Card>();
 		
-		assertEquals(2, checkDeck.countCard( card1,card2));
+		assertEquals(52, cards.getSize());
 	}
 }
+
+
+
 
 /*
  List<String> deck = 
