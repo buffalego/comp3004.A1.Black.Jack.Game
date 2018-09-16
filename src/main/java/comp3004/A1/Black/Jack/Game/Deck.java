@@ -3,6 +3,9 @@ package comp3004.A1.Black.Jack.Game;
 import java.util.ArrayList;
 import java.util.Random;
 
+import comp3004.A1.Black.Jack.Game.Card.Suit;
+import comp3004.A1.Black.Jack.Game.Card.Value;
+
 public class Deck 
 {
 

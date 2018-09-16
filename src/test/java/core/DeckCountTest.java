@@ -2,13 +2,14 @@ package core;
 
 import java.util.ArrayList;
 
+import comp3004.A1.Black.Jack.Game.Deck;
 import junit.framework.TestCase;
 
 public class DeckCountTest extends TestCase {
 	
 
 	public void testDectCount() {
-		(Deck) cards = new ArrayList<Card>();
+		Deck cards = new ArrayList<Card>();
 		cards.createFullDeck();
 		assertEquals(52, cards.size());
 	}
@@ -33,5 +34,6 @@ getSuit();
 getRank();
 
 
+https://dzone.com/articles/using-java-enums
 
 */
