@@ -35,8 +35,17 @@ public class BlackJackStart
 			
 		}
 		else if (select == "f" || select == "file")
-		{
+		{	
+			//Dealing the card
+			System.out.println("Dealing...");
 			
+			//Player then dealer gets first card
+			playerCards.draw(dealingDeck);
+			dealerCards.draw(dealingDeck);
+
+			//Player then dealer gets second card
+			playerCards.draw(dealingDeck);
+			dealerCards.draw(dealingDeck);
 		}
 		
 		
