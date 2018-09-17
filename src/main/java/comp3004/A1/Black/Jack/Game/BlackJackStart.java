@@ -27,6 +27,17 @@ public class BlackJackStart
 		//first prompt choose console or file
 		System.out.print("Would you select (c)-console or (f)-file?     ");
 		
+		Scanner playerInput = new Scanner(System.in);
+		String select = playerInput.nextLine();
+		
+		if (select == "c" || select == "console")
+		{
+			
+		}
+		else if (select == "f" || select == "file")
+		{
+			
+		}
 		
 		
 		
