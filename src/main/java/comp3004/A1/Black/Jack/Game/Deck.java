@@ -1,16 +1,18 @@
 package comp3004.A1.Black.Jack.Game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import comp3004.A1.Black.Jack.Game.Card.Rank;
 import comp3004.A1.Black.Jack.Game.Card.Suit;
-import comp3004.A1.Black.Jack.Game.Card.Value;
+
 
 public class Deck 
 {
 
 	private ArrayList<Card> cards;
+	private boolean isMixed;
 
 	public Deck()
 	{
@@ -34,5 +36,11 @@ public class Deck
 	public int getSize()
 	{
 		return this.cards.size();
+	}
+
+	public void mixDeck() {
+		// TODO Auto-generated method stub
+		Collections.shuffle(cards);
+	    isMixed = true;
 	}
 }
