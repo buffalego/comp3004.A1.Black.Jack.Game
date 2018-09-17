@@ -6,18 +6,27 @@ import junit.framework.TestCase;
 public class mixedDeckTest extends TestCase 
 {
 	//check if the deck is mixed
-	public void textMixedDeck() 
+	public void testMixedDeck() 
 	{
-		// make a new deck
-		Deck cards = new Deck();
-		//add cards to deck
-		cards.makeFullDeck();
-		//check if the deck is not mixed
-		assertFalse(cards.isMixed());
-		// mix the deck
-		cards.mixedDeck();
-		//check if the deck is mixed
-		assertTrue(cards.isMixed());
+		// make 2 deck
+		Deck originalDeck = new Deck();
+		Deck mixedDeck = new Deck();
+		
+		//add cards to two decks
+		originalDeck.makeFullDeck();
+		mixedDeck.makeFullDeck();
+		
+		//check 2 deck are the same
+		assertTrue(originalDeck.equals(mixedDeck));
+		
+		// mix the mixedDeck
+		mixedDeck.mixDeck();
+		
+		//check the mixedDeck is different from originalDeck
+		assertFalse(originalDeck.equals(mixedDeck));
+		
+		//double check if the mixedDeck will be randomly mixed after mixing one more time
+		assertFalse(mixedDeck.equals(mixedDeck.mixDeck()));
 	}
 
 }
