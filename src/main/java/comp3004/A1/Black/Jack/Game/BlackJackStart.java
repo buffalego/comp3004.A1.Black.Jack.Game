@@ -19,6 +19,11 @@ public class BlackJackStart
 		
 		//create a hand of cards for player
 		Deck playerCards = new Deck();
+		
+		
+		
+		
+		
 	}
 
 }

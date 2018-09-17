@@ -12,7 +12,7 @@ public class Deck
 {
 
 	private ArrayList<Card> cards;
-	private boolean isMixed;
+	public boolean isMixed;
 
 	public Deck()
 	{
@@ -43,4 +43,6 @@ public class Deck
 		Collections.shuffle(cards);
 	    isMixed = true;
 	}
+	
+	
 }

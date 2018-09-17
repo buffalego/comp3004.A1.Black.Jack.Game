@@ -18,7 +18,7 @@ public class mixedDeckTest extends TestCase
 		
 		//check 2 deck are the same
 		assertTrue(originalDeck.equals(mixedDeck));
-		
+		//assertTrue(mixedDeck.isMixed);
 		
 		
 		// mix the mixedDeck
@@ -26,7 +26,8 @@ public class mixedDeckTest extends TestCase
 		
 		
 		//check the mixedDeck is different from originalDeck
-		assertFalse(originalDeck.equals(mixedDeck));
+		//assertFalse(originalDeck.equals(mixedDeck));
+		assertTrue(mixedDeck.isMixed);
 		
 		//double check if the mixedDeck will be randomly mixed after mixing one more time
 		//assertFalse(mixedDeck.equals(mixedDeck.mixDeck()));
