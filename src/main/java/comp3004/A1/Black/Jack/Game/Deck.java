@@ -19,7 +19,7 @@ public class Deck
 	}
 
 	//Add 52 playing cards to a deck
-	public void createFullDeck()
+	public void makeFullDeck()
 	{
 		//Add Cards to the Deck
 		//Loop Through Suits

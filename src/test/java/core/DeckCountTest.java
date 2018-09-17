@@ -10,7 +10,7 @@ public class DeckCountTest extends TestCase {
 	//check if deck contains 52 cards or not
 	public void testDectCount() {
 		Deck cards = new Deck();
-		cards.createFullDeck();
+		cards.makeFullDeck();
 		assertEquals(52, cards.getSize());
 	}
 }
