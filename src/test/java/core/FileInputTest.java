@@ -6,6 +6,15 @@ import junit.framework.TestCase;
 
 public class FileInputTest extends TestCase
 {
-	Scanner playerInput = new Scanner(System.in);
+	public void TestFiles()
+	{
+		Scanner file;
+		
+		try 
+		{
+			x = new Scanner(new File();
+		}
+		
+	}
 	
 }
