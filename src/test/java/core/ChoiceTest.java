@@ -2,19 +2,14 @@ package core;
 
 import java.util.Scanner;
 
+import junit.framework.TestCase;
+
 public class ChoiceTest extends TestCase
 {
-	public void testFileChoice()
+	public void testPlayerChoices()
 	{
-		//get player choice
-		Scanner playerInput = new Scanner(System.in);
-		String select = playerInput.nextLine();
-		
-		if (select == "input" || select == "i")
-		{
-			
-		}
-		
-		
+		//first prompt choose console or file
+		System.out.print("Would you select (c)-console or (f)-file?     ");
+				
 	}
 }

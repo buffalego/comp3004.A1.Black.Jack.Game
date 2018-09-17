@@ -1,5 +1,7 @@
 package comp3004.A1.Black.Jack.Game;
 
+import java.util.Scanner;
+
 public class BlackJackStart 
 {
 	public static void main(String[] args)
@@ -19,6 +21,9 @@ public class BlackJackStart
 		
 		//create a hand of cards for player
 		Deck playerCards = new Deck();
+		
+		
+		
 		
 		
 		
