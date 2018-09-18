@@ -1,19 +1,19 @@
 package core;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 import junit.framework.TestCase;
 
 public class FileInputTest extends TestCase
 {
-	public void TestFiles()
+	public void TestFiles() throws IOException
 	{
-		Scanner file;
-		
-		try 
-		{
-			x = new Scanner(new File();
-		}
+		@SuppressWarnings("resource")
+		Scanner fileInput = new Scanner (new File("File1.txt"));
+		assertEquals("SK HA HQ CA", fileInput.nextLine());
 		
 	}
 	
