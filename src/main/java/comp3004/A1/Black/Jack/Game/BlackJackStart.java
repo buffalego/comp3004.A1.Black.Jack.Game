@@ -1,8 +1,10 @@
 package comp3004.A1.Black.Jack.Game;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class BlackJackStart 
@@ -11,109 +13,176 @@ public class BlackJackStart
 	{
 		System.out.println("Let's Play!");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
-		//first prompt choose console or file
-		System.out.println("Would you select (c)-console or (f)-file?");
-		
-		
-		Scanner playerInput = new Scanner(System.in);
-		String select = playerInput.nextLine();
-		
-		//System.out.println(select);
-		
-		if (select == "f" || select == "file")
+		while (true)
 		{
-			//ask and get player choice of file
-			System.out.println("What file do you want to play? (1, 2, 3, 4, or 5)");
+		
+			System.out.println("Would you like to player (1)Console or (2)File!");
+			Scanner playerChoice = new Scanner(System.in);
+			int choice = playerChoice.nextInt();
 			
-			Scanner playerFileChoosen = new Scanner(System.in);
-			int fileNum = playerFileChoosen.nextInt();
-			
-			if (fileNum == 1)
+			if(choice == 1)
 			{
-				Scanner fileInput = new Scanner (new File("File1.txt"));
+				System.out.println("YOU ARE PLAYING BY CONSOLE INPUT!");
+			
+				Deck dealingDeck = new Deck();
 				
-				while (fileInput.hasNextLine())
+				dealingDeck.makeFullDeck();
+				dealingDeck.mixDeck();
+				
+				//create a hand of cards for dealer
+				Deck dealerHand = new Deck();
+				
+				//create a hand of cards for player
+				Deck playerHand = new Deck();
+				
+				//Dealing the card
+				System.out.println("Dealing...");
+				
+				//Player then dealer gets first card
+				playerHand.draw(dealingDeck);
+				dealerHand.draw(dealingDeck);
+		
+				//Player then dealer gets second card
+				playerHand.draw(dealingDeck);
+				dealerHand.draw(dealingDeck);
+				
+				
+				boolean endRound = false;
+				//Scanner for user input
+				Scanner userInput = new Scanner(System.in);
+				
+				while(true)
 				{
-					
+					//Display player hand
+					System.out.println("Your Hand:" + playerHand.toString());
+		
+					//Display playerHand Value
+					System.out.println("Your hand is currently valued at: " + playerHand.cardsValue());
+		
+					//Display dealerHand (first one is showed and the other is hidden
+					System.out.println("Dealer Hand: " + dealerHand.getCard(0).toString() + " and [hidden]");
+		
+					//Player and Dealer decide to continue
+					System.out.println("Would you like to (1)Hit or (2)Stand");
+					int response = userInput.nextInt();
+		
+					//player hits
+					if(response == 1)
+					{
+						playerHand.draw(dealingDeck);
+						System.out.println("You draw a:" + playerHand.getCard(playerHand.getSize()-1).toString());
+						//Bust if they go over 21
+						if(playerHand.cardsValue() > 21){
+							System.out.println("Bust. Currently valued at: " + playerHand.cardsValue());
+							endRound = true;
+							break;
+						}
+					}
+					//Stand
+					if(response == 2)
+					{
+						break;
+					}
 				}
+				
+				
+				
+				System.out.println("Dealer Cards:" + dealerHand.toString());
+				//See if dealer has more points than player
+				if((dealerHand.cardsValue() > playerHand.cardsValue()) && endRound == false)
+				{
+					System.out.println("Dealer beats you " + dealerHand.cardsValue() + " to " + playerHand.cardsValue());
+					endRound = true;
+				}
+		
+				//Dealer hits at 16 stands at 17
+				while((dealerHand.cardsValue() < 17) && endRound == false)
+				{
+					dealerHand.draw(dealingDeck);
+					System.out.println("Dealer draws: " + dealerHand.getCard(dealerHand.getSize()-1).toString());
+				}
+		
+				//Display value of dealer
+				System.out.println("Dealers hand value: " + dealerHand.cardsValue());
+		
+				//Determine if dealer busted
+				if((dealerHand.cardsValue()>21)&& endRound == false)
+				{
+					System.out.println("Dealer Busts. You win!");
+					endRound = true;
+				}
+		
+				//Determine dealer = player
+				if((dealerHand.cardsValue() == playerHand.cardsValue()) && endRound == false)
+				{
+					System.out.println("Dealer wins");
+					endRound = true;
+				}
+		
+				//Determine if player wins
+				if((playerHand.cardsValue() > dealerHand.cardsValue()) && endRound == false)
+				{
+					System.out.println("You win the hand.");
+					endRound = true;
+				}
+				else if(endRound == false) //dealer wins
+				{
+					System.out.println("Dealer wins.");
+				}
+		
+				//End of hand - put cards back in dealed deck
+				playerHand.movePlayingHandsToDeck(dealingDeck);
+				dealerHand.movePlayingHandsToDeck(dealingDeck);
+				System.out.println("End of Hand.");
+				
+				
+				System.out.println("Would you like to play agian? (1)Yes or (2)No");
+				Scanner playerReplay = new Scanner(System.in);
+				int replay = playerReplay.nextInt();
+					
+				if (replay == 1)
+				{
+					System.out.println("Let's play again!");
+					break;
+				}
+				if (replay == 2)
+				{
+					System.out.println("See you again!");
+					break;
+				}
+					
+				
+				
 			}
-			else if (fileNum == 2)
+			else if (choice == 2)
 			{
-				Scanner fileInput = new Scanner (new File("File2.txt"));
+				System.out.println("YOU ARE PLAYING BY FILE INPUT!");
 			}
-			else if (fileNum == 3)
+			else
 			{
-				Scanner fileInput = new Scanner (new File("File3.txt"));
+				System.out.println("Invalid Input!");
 			}
-			else if (fileNum == 4)
-			{
-				Scanner fileInput = new Scanner (new File("File4.txt"));
-			}
-			else if (fileNum == 5)
-			{
-				Scanner fileInput = new Scanner (new File("File5.txt"));
-			}
-			
-			
 		}
-		else if (select == "c" || select == "console")
-		{	
-			//create new deck for dealer
-			//add to make a full deck
-			//then shuffle it
-			Deck dealingDeck = new Deck();
-			
-			dealingDeck.makeFullDeck();
-			dealingDeck.mixDeck();
-			
-			//create a hand of cards for dealer
-			Deck dealerCards = new Deck();
-			
-			//create a hand of cards for player
-			Deck playerCards = new Deck();
-			
-			//Dealing the card
-			System.out.println("Dealing...");
-			
-			//Player then dealer gets first card
-			playerCards.draw(dealingDeck);
-			dealerCards.draw(dealingDeck);
-
-			//Player then dealer gets second card
-			playerCards.draw(dealingDeck);
-			dealerCards.draw(dealingDeck);
-		}
-		else
-		{
-			System.out.println("Invalid Choice!");
-		}
-		
-		*/
-		
-		
-		
-		
-		
 		
 	}
 
-}
 
-// https://www.youtube.com/watch?v=r7U98zQg9lc
+
+
+}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
