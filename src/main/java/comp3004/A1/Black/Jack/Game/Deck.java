@@ -77,6 +77,8 @@ public class Deck
 		}
 	}
 	
+	//public Card hasCard(Deck dealerDeck)
+	
 	public int cardsValue()
 	{
 		int totalValue = 0;

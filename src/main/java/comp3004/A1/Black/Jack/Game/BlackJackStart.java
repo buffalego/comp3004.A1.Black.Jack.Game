@@ -1,10 +1,6 @@
 package comp3004.A1.Black.Jack.Game;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class BlackJackStart 
@@ -50,40 +46,68 @@ public class BlackJackStart
 				boolean endRound = false;
 				//Scanner for user input
 				Scanner userInput = new Scanner(System.in);
+				Scanner dealerInput = new Scanner(System.in);
 				
 				while(true)
 				{
 					//Display player hand
-					System.out.println("Your Hand:" + playerHand.toString());
+					System.out.println("Your Hand:" + playerHand.getCard(0).toString() + " " + playerHand.getCard(1).toString());
 		
 					//Display playerHand Value
 					System.out.println("Your hand is currently valued at: " + playerHand.cardsValue());
 		
 					//Display dealerHand (first one is showed and the other is hidden
 					System.out.println("Dealer Hand: " + dealerHand.getCard(0).toString() + " and [hidden]");
-		
-					//Player and Dealer decide to continue
-					System.out.println("Would you like to (1)Hit or (2)Stand");
-					int response = userInput.nextInt();
-		
-					//player hits
-					if(response == 1)
+					
+					// player have < 16 points ==> must hit
+					if (playerHand.cardsValue() < 16)
 					{
+						System.out.println("Your hand is currently valued at: " + playerHand.cardsValue() + " is less than 17");
+						System.out.println("You must hit!");
 						playerHand.draw(dealingDeck);
 						System.out.println("You draw a:" + playerHand.getCard(playerHand.getSize()-1).toString());
-						//Bust if they go over 21
-						if(playerHand.cardsValue() > 21){
+						System.out.println("Your hand is now valued at: " + playerHand.cardsValue());
+						if(playerHand.cardsValue() > 21)
+						{
 							System.out.println("Bust. Currently valued at: " + playerHand.cardsValue());
+							System.out.println("Dealer wins!");
 							endRound = true;
 							break;
 						}
 					}
-					//Stand
-					if(response == 2)
+					
+					
+					//Player decide to continue
+					else
 					{
-						break;
+						System.out.println("Would you like to (1)Hit or (2)Stand");
+						int response = userInput.nextInt();
+			
+						//player hits
+						if(response == 1 )
+						{
+							playerHand.draw(dealingDeck);
+							System.out.println("You draw a:" + playerHand.getCard(playerHand.getSize()-1).toString());
+							//Bust if they go over 21
+							if(playerHand.cardsValue() > 21)
+							{
+								System.out.println("Bust. Currently valued at: " + playerHand.cardsValue());
+								System.out.println("Dealer wins!");
+								endRound = true;
+								break;
+							}
+						}
+						//Stand
+						else if(response == 2)
+						{
+							break;
+						}
 					}
+					//break;
 				}
+				
+				// player hand displayer
+				System.out.println("Your hand is" + playerHand.toString());
 				
 				
 				
@@ -94,16 +118,60 @@ public class BlackJackStart
 					System.out.println("Dealer beats you " + dealerHand.cardsValue() + " to " + playerHand.cardsValue());
 					endRound = true;
 				}
-		
-				//Dealer hits at 16 stands at 17
-				while((dealerHand.cardsValue() < 17) && endRound == false)
+				
+				// dealer has <= 16
+				if (dealerHand.cardsValue() <= 16)
 				{
+					System.out.println("Dealer hand is currently valued at: " + dealerHand.cardsValue() + " is less than 17");
+					System.out.println("Must hit!");
 					dealerHand.draw(dealingDeck);
-					System.out.println("Dealer draws: " + dealerHand.getCard(dealerHand.getSize()-1).toString());
+					System.out.println("dealer draw a:" + dealerHand.getCard(dealerHand.getSize()-1).toString());
+					System.out.println("dealer hand is now valued at: " + dealerHand.cardsValue());
+					
+					// check if dealer and player equal points
+					if (dealerHand.cardsValue() >= playerHand.cardsValue() && (dealerHand.cardsValue() <= 21 || dealerHand.cardsValue() >= 17))
+					{
+						System.out.println("Dealer wins");
+						endRound = true;	
+					}
 				}
-		
+				
 				//Display value of dealer
-				System.out.println("Dealers hand value: " + dealerHand.cardsValue());
+				else 
+				{
+					System.out.println("Dealers hand value: " + dealerHand.cardsValue());
+				}
+				
+					System.out.println("Would you like to (1)Hit or (2)Stand");
+					int dealerRep = userInput.nextInt();
+					
+					if(dealerRep == 1 )
+					{
+						dealerHand.draw(dealingDeck);
+						System.out.println("dealer draw a:" + dealerHand.getCard(dealerHand.getSize()-1).toString());
+						//Bust if they go over 21
+						if(dealerHand.cardsValue() > 21)
+						{
+							System.out.println("Bust. Currently valued at: " + dealerHand.cardsValue());
+							System.out.println("You Win!");
+							endRound = true;
+							break;
+						}
+						//Determine dealer = player
+						else if((dealerHand.cardsValue() == playerHand.cardsValue()) && endRound == false)
+						{
+							System.out.println("Dealer wins");
+							endRound = true;
+							break;
+						}
+						break;
+					}
+					//Stand
+					else if(dealerRep == 2)
+					{
+						break;
+					}
+				
 		
 				//Determine if dealer busted
 				if((dealerHand.cardsValue()>21)&& endRound == false)
@@ -125,10 +193,10 @@ public class BlackJackStart
 					System.out.println("You win the hand.");
 					endRound = true;
 				}
-				else if(endRound == false) //dealer wins
+				/*else if(endRound == false) //dealer wins
 				{
 					System.out.println("Dealer wins.");
-				}
+				}*/
 		
 				//End of hand - put cards back in dealed deck
 				playerHand.movePlayingHandsToDeck(dealingDeck);
@@ -143,16 +211,12 @@ public class BlackJackStart
 				if (replay == 1)
 				{
 					System.out.println("Let's play again!");
-					break;
 				}
 				if (replay == 2)
 				{
 					System.out.println("See you again!");
 					break;
-				}
-					
-				
-				
+				}	
 			}
 			else if (choice == 2)
 			{
@@ -163,12 +227,7 @@ public class BlackJackStart
 				System.out.println("Invalid Input!");
 			}
 		}
-		
 	}
-
-
-
-
 }
 		
 		
