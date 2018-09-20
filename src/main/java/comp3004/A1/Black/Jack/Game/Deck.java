@@ -33,10 +33,7 @@ public class Deck
 			}
 		}
 	}
-	public int getSize()
-	{
-		return this.cards.size();
-	}
+	public int getSize(){ return this.cards.size(); }
 
 	public void mixDeck() {
 		// TODO Auto-generated method stub

@@ -11,26 +11,27 @@ public class BlackJackStart
 	{
 		System.out.println("Let's Play!");
 		
-		//create new deck for dealer
-		//add to make a full deck
-		//then shuffle it
-		Deck dealingDeck = new Deck();
-		
-		dealingDeck.makeFullDeck();
-		dealingDeck.mixDeck();
-		
-		//create a hand of cards for dealer
-		Deck dealerCards = new Deck();
-		
-		//create a hand of cards for player
-		Deck playerCards = new Deck();
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*
 		//first prompt choose console or file
-		System.out.print("Would you select (c)-console or (f)-file?     ");
+		System.out.println("Would you select (c)-console or (f)-file?");
 		
-		@SuppressWarnings("resource")
+		
 		Scanner playerInput = new Scanner(System.in);
 		String select = playerInput.nextLine();
 		
@@ -74,6 +75,20 @@ public class BlackJackStart
 		}
 		else if (select == "c" || select == "console")
 		{	
+			//create new deck for dealer
+			//add to make a full deck
+			//then shuffle it
+			Deck dealingDeck = new Deck();
+			
+			dealingDeck.makeFullDeck();
+			dealingDeck.mixDeck();
+			
+			//create a hand of cards for dealer
+			Deck dealerCards = new Deck();
+			
+			//create a hand of cards for player
+			Deck playerCards = new Deck();
+			
 			//Dealing the card
 			System.out.println("Dealing...");
 			
@@ -85,11 +100,12 @@ public class BlackJackStart
 			playerCards.draw(dealingDeck);
 			dealerCards.draw(dealingDeck);
 		}
-		/*else
+		else
 		{
 			System.out.println("Invalid Choice!");
-		}*/
+		}
 		
+		*/
 		
 		
 		
@@ -99,3 +115,5 @@ public class BlackJackStart
 	}
 
 }
+
+// https://www.youtube.com/watch?v=r7U98zQg9lc

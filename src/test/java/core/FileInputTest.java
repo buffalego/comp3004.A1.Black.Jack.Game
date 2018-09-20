@@ -1,20 +1,16 @@
 package core;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
 
+import comp3004.A1.Black.Jack.Game.TestFileInput;
 import junit.framework.TestCase;
 
 public class FileInputTest extends TestCase
 {
 	public void TestFiles() throws IOException
 	{
-		@SuppressWarnings("resource")
-		Scanner fileInput = new Scanner (new File("File1.txt"));
-		assertEquals("SK HA HQ CA", fileInput.nextLine());
-		
+		TestFileInput print = new TestFileInput();
+		assertEquals("SK HA HQ CA", print.printFile1());
 	}
 	
 }
