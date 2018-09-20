@@ -14,11 +14,8 @@ public class Deck
 	private ArrayList<Card> cards;
 	public boolean isMixed;
 
-	public Deck()
-	{
-		//Create a new deck of playing cards
-		this.cards = new ArrayList<Card>();
-	}
+	//Create a new deck of playing cards
+	public Deck(){ this.cards = new ArrayList<Card>(); }
 
 	//Add 52 playing cards to a deck
 	public void makeFullDeck()
@@ -33,6 +30,7 @@ public class Deck
 			}
 		}
 	}
+	
 	public int getSize(){ return this.cards.size(); }
 
 	public void mixDeck() {
@@ -58,6 +56,20 @@ public class Deck
 	
 	//Add card to hands of player and dealer
 	public void addCard(Card addCard){ this.cards.add(addCard); }
+	
+	// take all the cards on player and dealer hands back to the deck
+	public void movePlayingHandsToDeck(Deck dealedDeck){
+		int thisDeckSize = this.cards.size();
+		
+		//put cards on hand back into dealed deck
+		for(int i = 0; i < thisDeckSize; i++){
+			dealedDeck.addCard(this.getCard(i));
+		}
+		//empty out the hand
+		for(int i = 0; i < thisDeckSize; i++){
+			this.removeCard(0);
+		}
+	}
 	
 	
 	
